@@ -8,7 +8,7 @@ from router_info import router
 print(f"I am connecting to {router["host"]}")
 
 # create a configuration filter
-netconf_filter = open("/Users/bumpsinthewire/Documents/Study/DEVASC/devasc/netconf_filter.xml").read()
+netconf_filter = open("/Users/bumpsinthewire/Documents/Study/DEVASC/devasc/netconf/netconf_filter.xml").read()
 
 # establish a NETCONF connection to the router in a "with" block so that the connection is closed automatically
 with manager.connect(
