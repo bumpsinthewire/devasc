@@ -2,33 +2,13 @@ from ncclient import manager
 import xml.dom.minidom
 import xmltodict
 from pprint import pprint
-
-# define connection information in a dictionary
-router = {
-	"host": "devnetsandboxiosxe.cisco.com",
-	"port": 830,
-	"username": "admin",
-	"password": "C1sco12345"
-}
+from router_info import router
 
 # print out which device we are connecting to
 print(f"I am connecting to {router["host"]}")
 
 # create a configuration filter
-netconf_filter = """
-<filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-	<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
-		<interface>
-			<name>GigabitEthernet3</name>
-		</interface>
-	</interfaces>
-	<interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
-		<interface>
-			<name>GigabitEthernet3</name>
-		</interface>
-	</interfaces-state>
-</filter>
-"""
+netconf_filter = open("/Users/bumpsinthewire/Documents/Study/DEVASC/devasc/netconf_filter.xml").read()
 
 # establish a NETCONF connection to the router in a "with" block so that the connection is closed automatically
 with manager.connect(
